@@ -2,4 +2,7 @@
 
 ** spoiler alert **
 
-some solutions to project euler in Prolog
+selected solutions to [Project Euler](http://projecteuler.net/) problems in
+
+- Prolog
+- OCaml
