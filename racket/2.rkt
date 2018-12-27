@@ -1,10 +1,11 @@
-#lang racket
+#lang typed/racket
 
-(require rackunit)
+(require typed/rackunit)
 
-; Number -> List of Number
-; generates Fibonacci sequence up to k
+; Generates Fibonacci sequence up to k
+(: fib-seq (-> Integer (Listof Integer)))
 (define (fib-seq k)
+  (: fib-terms (-> Integer Integer Integer (Listof Integer) (Listof Integer)))
   (define (fib-terms prev cur limit acc)
     (cond
       [(<= (+ prev cur) limit)
@@ -12,15 +13,15 @@
       [else acc]))
   (reverse (fib-terms 0 1 k '())))
 
-; Number -> Boolean
-; returns true if number is even
+; Returns true if number is even
+(: is-even (-> Integer Boolean))
 (define (is-even n)
   (zero? (modulo n 2)))
 
-; List of Number -> Number
-; takes a list of numbers and return the sum
+; Takes a list of numbers and return the sum
+(: sumList (-> (Listof Integer) Integer))
 (define (sumList xs)
-  (foldl (lambda (v i) (+ v i)) 0 xs))
+  (foldl (lambda ([v : Integer] [i : Integer]) (+ v i)) 0 xs))
 
 (check-equal?
  (fib-seq 10)
